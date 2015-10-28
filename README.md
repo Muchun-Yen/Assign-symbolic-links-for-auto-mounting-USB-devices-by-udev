@@ -1,20 +1,19 @@
 # Assign symbolic link for auto-mounting USB devices by udev
 
 # Introduction
-The Linux system will auto-mounting USB device when user plug-in a usb device or reboot system.
-Sometimes the mounted name will make people misunderstand because the USB mounted sequentially different.
+Linux kernel usually just assigns unpredictable device names. We would need udev rule to make it predictable.
+In technical, it can generate custom & specifiy symblic links, based on Vid, Pid, plugged-in USB port number...etc.  
 
-Setting a udev rule can make symbolic links for the mounted USB devices.
-therefore the mounted USB device can be assigned a symbolic link which is corresponding to the USB socket.
+In this document, we will describe our rules and define the naming convensions.
 
 
-## An example in ODROID-XU3
+# The XU3 diagram and USB ports
 
 The ODROID-XU3 USB2.0 sockets (A-D)
 ![USB Sockets](/xu3-usb2.0 ports.png)
 
 
-Three Adurino Mega2560 connect to
+# Port Assignments
 
 ![Corresponding Sockets](https://docs.google.com/drawings/d/16_H_gjvYTfrIBuZyytr0LjA5_RZo3IF8GQLxZzwaYr8/pub?w=769&h=275)
 
@@ -33,7 +32,20 @@ The follows information are we need.
     ATTRS{idVendor}=="2341"
     ATTRS{idProduct}=="0042"
     ...
-```    
+```   
+
+## MEGA2560 in Head
+It will be assigned to mega-0
+udev rule will match VID=2341, PID=0042, and Port number 1.2
+
+## MEGA2560 in Arms
+It will be assigned to mega-1
+udev rule will match VID=2341, PID=0042, and Port number 1.3
+
+## MEGA2560 in base
+It will be assigned to mega-2
+udev rule will match VID=2341, PID=0042, and Port number 1.4
+
 
 #### create a udev rule file in /etc/udev/rules.d/;
 
@@ -46,6 +58,9 @@ KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devp
 
 The udev rule makes those Symbolic links (mega-0 ~ mega-1)to ttyACM*(ttyACM0 ~ttyACM2)which corresponding to each mounted Mega2560 board in USB socket (A-C).
 
+
+# To be continue (Other assign..)
+## XV11 sensor
 
 
 # References
