@@ -7,7 +7,7 @@ In technical, it can generate custom & specifiy symblic links, based on Vid, Pid
 In this document, we will describe our rules and define the naming convensions.
 
 
-# The XU3 diagram and USB ports
+# The XU3/XU4 diagram and USB ports
 
 The ODROID-XU3 USB2.0 sockets (A-D)
 ![USB Sockets](/xu3-usb2.0 ports.png)
@@ -31,11 +31,14 @@ The ODROID-XU4 USB3.0 sockets (A-B)
 10-port USB Hub
 ![10-port USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-10p.jpg)
 
-10-port USB Hub
+7-port USB Hub
 ![7-port USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-7p.jpg)
 
 
 #### Check out the Ardurino Mega2560 board PID/VID, and USB connect sorcket infomation (connect to socket A)
+
+## This is the example for 10-port USB hub case
+
 ```javascript
 $ udevadm info -a -n ttyACM0
 ```
@@ -98,7 +101,7 @@ udev rule will match VID=2341, PID=0042, and Port number 1.2.2.2
 
 ## create a udev rule file in /etc/udev/rules.d/;
 
-/etc/udev/rules.d/99-mega2560-usb_hub.rules
+/etc/udev/rules.d/99-mega2560-usb_hub_10port.rules
 ```javascript
 KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.4", SYMLINK+="mega_base0"
 KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.3", SYMLINK+="mega_arm_left0"
@@ -110,6 +113,18 @@ KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devp
 KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.2.3", SYMLINK+="mega_in_hub8"
 KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.2.2", SYMLINK+="mega_in_hub9"
 ```  
+/etc/udev/rules.d/99-mega2560-usb_hub.rules
+
+/etc/udev/rules.d/99-mega2560-usb_hub_7port.rules
+```
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.1.4", SYMLINK+="mega_base0"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.1.3", SYMLINK+="mega_arm_left0"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.4", SYMLINK+="mega_arm_left1"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.3", SYMLINK+="mega_arm_right0"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.2", SYMLINK+="mega_arm_right1"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.1.2", SYMLINK+="mega_in_hub6"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.1.1, SYMLINK+="mega_in_hub7"
+```
 
 The udev rule makes those Symbolic links (mega_*)to ttyACM* which corresponding to each mounted Mega2560 boards in USB hub.
 
