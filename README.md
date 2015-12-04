@@ -12,14 +12,28 @@ In this document, we will describe our rules and define the naming convensions.
 The ODROID-XU3 USB2.0 sockets (A-D)
 ![USB Sockets](/xu3-usb2.0 ports.png)
 
+The ODROID-XU4 USB3.0 sockets (A-B)
+![USB Sockets](/xu4-usb3.0 ports.png)
+
+
 
 # Port Assignments
 
-![Corresponding Sockets](https://docs.google.com/drawings/d/16_H_gjvYTfrIBuZyytr0LjA5_RZo3IF8GQLxZzwaYr8/pub?w=769&h=275)
+The ODROID-XU3 USB2.0 sockets (A-D)
+![Corresponding XU3 USB 2.0Sockets](https://docs.google.com/drawings/d/16_H_gjvYTfrIBuZyytr0LjA5_RZo3IF8GQLxZzwaYr8/pub?w=769&h=275)
 
-# The Symbolic links design (10-port USB Hub)
+The ODROID-XU4 USB3.0 sockets (A-B)
+![Corresponding XU4 USB 3.0 Sockets](https://docs.google.com/drawings/d/1Uotxm_qWHY_9kqP2Xrq2ourmvdrzX8semviyzw4FU80/pub?w=769&h=275)
 
+
+# The Symbolic links design
+
+10-port USB Hub
 ![10-port USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-10p.jpg)
+
+10-port USB Hub
+![7-port USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-7p.jpg)
+
 
 #### Check out the Ardurino Mega2560 board PID/VID, and USB connect sorcket infomation (connect to socket A)
 ```javascript
