@@ -145,7 +145,7 @@ KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devp
 
 The udev rule makes those Symbolic links (mega_*)to ttyACM* which corresponding to each mounted Mega2560 boards in USB hub.
 The udev rule makes those Symbolic links (xv11)to ttyUSB* which corresponding to USB hub port 1.2.1.3 
-The udev rule makes those Symbolic links (xv11)to ttyUSB* which corresponding to USB hub port 1.2.4 
+The udev rule makes those Symbolic links (gryo)to ttyUSB* which corresponding to USB hub port 1.2.4 
 
 
 
