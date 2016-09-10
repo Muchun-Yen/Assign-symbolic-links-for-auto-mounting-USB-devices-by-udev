@@ -28,18 +28,29 @@ The ODROID-XU4 USB3.0 sockets (A-B)
 
 # The Symbolic links design
 
-#Andbot
+#Andbot 0
 ## 10-port USB Hub
 ![10-port USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-10p.jpg)
 
+#Andbot 1.1
 ## 7-port USB Hub
 ### USBHub-7p-black.jpg
 ![7-port USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-7p-black.jpg)
+
 
 ## Using 2 7-port USB Hub 
 ### USBHub-7p-A.jpg
 ![7-port-A USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-7p-A.jpg)
 #### Check out the Ardurino Mega2560 board PID/VID, and USB connect sorcket infomation (connect to socket A)
+
+
+#Andbot 1.2
+## 7-port USB Hub
+### USBHub-7p-andbot12.jpg
+![7-port-andbot12 USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-7p-andbot12.jpg)
+####
+
+
 
 #Rogby
 ## 7-port USB Hub
@@ -154,6 +165,17 @@ The udev rule makes those Symbolic links (mega_*)to ttyACM* which corresponding 
 The udev rule makes those Symbolic links (xv11)to ttyUSB* which corresponding to USB hub port 1.2.1.3 
 The udev rule makes those Symbolic links (gryo)to ttyUSB* which corresponding to USB hub port 1.2.4 
 
+##**Andbot #1.2**##
+/etc/udev/rules.d/99-mega2560-usb_hub_7port-a12.rules
+```
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.1.4", SYMLINK+="mega_arm"
+KERNEL=="ttyUSB*", ATTRS{idProduct}=="6001", ATTRS{idVendor}=="0403", ATTRS{devpath}=="1.2.1.3", SYMLINK+="xv11"
+KERNEL=="ttyUSB*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.4", SYMLINK+="mega_base"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.1.2", SYMLINK+="mega_head"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="2303", ATTRS{idVendor}=="067b", ATTRS{devpath}=="1.2.1.1", SYMLINK+="gyro"
+```
+
+
 ##**Rugby**##
 /etc/udev/rules.d/99-rugby.rules
 ```
@@ -166,6 +188,7 @@ KERNEL=="ttyUSB*", ATTRS{idProduct}=="6001", ATTRS{idVendor}=="0403", ATTRS{devp
 Please reference picture of the Rogby's USB hub connecting design.(USBHub-7p-rugby.jpg)
 
 ---
+
 
 
 
