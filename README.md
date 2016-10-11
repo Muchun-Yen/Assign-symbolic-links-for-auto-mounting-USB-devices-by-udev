@@ -43,6 +43,12 @@ The ODROID-XU4 USB3.0 sockets (A-B)
 ![7-port-A USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-7p-A.jpg)
 #### Check out the Ardurino Mega2560 board PID/VID, and USB connect sorcket infomation (connect to socket A)
 
+## Andbot no.1
+### USBHub-7p-A11.jpg
+![7-port USB hub picture](https://github.com/Muchun-Yen/Assign-symbolic-links-for-auto-mounting-USB-devices-by-udev/blob/master/USBHub-7p-A11.jpg)
+
+
+
 
 #Andbot 1.2
 ## 7-port USB Hub
@@ -164,6 +170,17 @@ KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devp
 The udev rule makes those Symbolic links (mega_*)to ttyACM* which corresponding to each mounted Mega2560 boards in USB hub.
 The udev rule makes those Symbolic links (xv11)to ttyUSB* which corresponding to USB hub port 1.2.1.3 
 The udev rule makes those Symbolic links (gryo)to ttyUSB* which corresponding to USB hub port 1.2.4 
+
+
+##**Andbot #1.1 Machine-No1**##
+/etc/udev/rules.d/99-mega2560-usb_hub_7port-a11.rules
+```
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.1.4", SYMLINK+="mega_base"
+KERNEL=="ttyUSB*", ATTRS{idProduct}=="ea60", ATTRS{idVendor}=="10c4", ATTRS{devpath}=="1.2.1.3", SYMLINK+="rplidar"
+KERNEL=="ttyUSB*", ATTRS{idProduct}=="2303", ATTRS{idVendor}=="067b", ATTRS{devpath}=="1.2.4", SYMLINK+="gyro"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.2", SYMLINK+="mega_head"
+KERNEL=="ttyACM*", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{devpath}=="1.2.1.2", SYMLINK+="mega_arm"
+```
 
 ##**Andbot #1.2**##
 /etc/udev/rules.d/99-mega2560-usb_hub_7port-a12.rules
